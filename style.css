@@ -1,0 +1,202 @@
+/* ==========================================================
+   RESET & VARIÁVEIS DE CORES
+   Paleta: Azul Acinzentado, Vermelho Vinho, Branco
+   ========================================================== */
+:root {
+    --bg-main: #2b3542;          /* Azul acinzentado escuro */
+    --card-bg: #3a4756;          /* Azul acinzentado médio */
+    --accent-wine: #721c24;      /* Vermelho vinho */
+    --accent-wine-light: #9b2c37;/* Vinho mais claro para destaques */
+    --text-white: #ffffff;       /* Branco puro */
+    --text-muted: #d0d7de;       /* Branco levemente acinzentado */
+    --shadow-3d: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e242d 0%, #2b3542 50%, #1a0f12 100%);
+    color: var(--text-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ==========================================================
+   OBJETOS 3D E ANIMAÇÕES DE FUNDO
+   ========================================================== */
+.bg-3d-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.shape {
+    position: absolute;
+    user-select: none;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+    animation: float 8s ease-in-out infinite alternate;
+}
+
+/* Estrelas 3D */
+.star {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 2px 5px 10px rgba(0,0,0,0.5);
+}
+.star-1 { font-size: 3rem; top: 10%; left: 8%; animation-delay: 0s; }
+.star-2 { font-size: 4rem; top: 65%; left: 85%; animation-delay: 2s; }
+.star-3 { font-size: 2.5rem; top: 80%; left: 12%; animation-delay: 4s; }
+
+/* Trevos de Quatro Folhas 3D */
+.clover {
+    font-size: 3.5rem;
+    filter: drop-shadow(3px 8px 12px rgba(0,0,0,0.6));
+}
+.clover-1 { top: 20%; left: 80%; animation-delay: 1s; }
+.clover-2 { top: 75%; left: 45%; animation-delay: 3s; }
+
+/* Flores Brancas 3D */
+.flower {
+    font-size: 3.5rem;
+    filter: drop-shadow(3px 8px 12px rgba(0,0,0,0.6));
+}
+.flower-1 { top: 15%; left: 45%; animation-delay: 1.5s; }
+.flower-2 { top: 50%; left: 5%; animation-delay: 3.5s; }
+.flower-3 { top: 40%; left: 90%; animation-delay: 2.5s; }
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    100% {
+        transform: translateY(-30px) rotate(15deg) scale(1.1);
+    }
+}
+
+/* ==========================================================
+   CABEÇALHO
+   ========================================================== */
+.header {
+    text-align: center;
+    margin: 40px 20px 20px;
+    z-index: 1;
+}
+
+.main-title {
+    font-size: 3.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-white);
+    text-shadow: 3px 3px 0px var(--accent-wine), 6px 6px 15px rgba(0, 0, 0, 0.6);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ==========================================================
+   GRID E CARDS (COM EFEITO MODAL HOVER)
+   ========================================================== */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto 60px;
+    z-index: 2;
+}
+
+.card {
+    background: linear-gradient(145deg, var(--card-bg), #26303c);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--accent-wine);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: var(--shadow-3d);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    cursor: pointer;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 1.6rem;
+    color: var(--text-white);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent-wine);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.card ul {
+    list-style: none;
+}
+
+.card li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.card li strong {
+    color: var(--text-white);
+}
+
+/* ----------------------------------------------------------
+   EFEITO MODAL DE DESTAQUE NO HOVER
+   ---------------------------------------------------------- */
+.card:hover {
+    z-index: 10;
+    transform: scale(1.08) translateY(-10px);
+    background: linear-gradient(145deg, #445466, #2d3846);
+    border-color: var(--accent-wine-light);
+    box-shadow: 0 25px 50px rgba(114, 28, 36, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================
+   RODAPÉ
+   ========================================================== */
+.footer {
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    z-index: 1;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.3rem;
+    }
+    
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
